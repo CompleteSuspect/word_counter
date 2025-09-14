@@ -1,0 +1,15 @@
+# Ignore Python cache & compiled files
+__pycache__/
+*.pyc
+
+# Ignore VS Code settings (if you don’t want to share them)
+.vscode/
+
+# Ignore default results/output files
+results.txt
+*.out
+*.log
+
+# Ignore test text files
+*.txt
+!README.md   # (but keep README if it’s ever written as .md)
