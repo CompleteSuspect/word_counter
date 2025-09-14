@@ -9,10 +9,8 @@ if len(sys.argv) < 2: #using sys.argv for learning
 input_file = sys.argv[1]
 output_file = sys.argv[2] if len(sys.argv) > 2 else "results.txt" #first time using conditional expression
 
-print(output_file)
-
 def normalise(raw_s, as_lst = False): #mynormaliser function, which uses re.findall to capture good text()
-    new_lst = re.findall(r"([a-z]+)", raw_s.lower())  #it also converts string into lowecase
+    new_lst = re.findall((r"\b(?:[ai]|[a-z]{2,})\b"), raw_s.lower())  #single ch words a or i only or a to z if more than 2 ch
 
     if as_lst:
         return new_lst #return as list optional
@@ -28,7 +26,5 @@ sorted_words = sorted(counts.items(), key=lambda x: (-x[1], -len(x[0]))) #sortin
 with open(output_file, 'w') as f: #write the results into an output file
     for word, count in sorted_words:
         f.write(f'{word} has appeared: {count} times.\n')
-        print(word, count)
 
-    most_common = counts.most_common(1) #maybe this could be tidier, but this prints most common word
-    f.write(f'The most common word is: "{most_common[0][0]}", which appeared: {most_common[0][1]} times')
+    f.write(f'The most common word is: "{sorted_words[0][0]}", which appeared: {sorted_words[0][1]} times')
